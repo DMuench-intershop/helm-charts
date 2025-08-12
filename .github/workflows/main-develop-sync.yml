@@ -35,9 +35,9 @@ jobs:
     - name: Create PR if necessary
       shell: bash
       run: |
-        SUBJECT="chore: integrate main to develop/${{ matrix.branch }}"
-        BODY="Automated Sync PR"
-        # this may fail if a PR already exists, this is ignored
-        gh pr create --base "develop/${{ matrix.branch }}" --title "$SUBJECT" --body "$BODY" --label ignore-for-release-notes || true
+        git fetch origin main develop/${{ matrix.branch }}
+        git checkout develop/${{ matrix.branch }}
+        git merge --no-edit origin/main
+        git push origin develop/${{ matrix.branch }}
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
