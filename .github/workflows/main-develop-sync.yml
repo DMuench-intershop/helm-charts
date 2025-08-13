@@ -10,10 +10,8 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-        - icm
-        - iom
-        - pwa
-        - common
+        - test-1
+        - test-2
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
