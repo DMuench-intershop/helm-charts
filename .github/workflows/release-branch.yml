@@ -166,4 +166,3 @@ jobs:
         title: Release ${{ steps.read-release-input-parameter.outputs.release-input-parameter }}
         commit-message: "release: ${{ steps.read-release-input-parameter.outputs.release-input-parameter }} and dependent charts"
         delete-branch: true
-        labels: automated pr
