@@ -161,10 +161,8 @@ jobs:
       id: pr
       uses: peter-evans/create-pull-request@v6
       with: # commits all changes and creates the release branch and PR. If one already exists, it is updated.
-        token: ${{ secrets.PR_CREATOR_TOKEN }}
         branch: release/${{ github.ref_name }}
         base: main
         title: Release ${{ steps.read-release-input-parameter.outputs.release-input-parameter }}
         commit-message: "release: ${{ steps.read-release-input-parameter.outputs.release-input-parameter }} and dependent charts"
         delete-branch: true
-        labels: automated pr
