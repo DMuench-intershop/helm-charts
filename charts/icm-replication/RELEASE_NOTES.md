@@ -1,14 +1,10 @@
 
-<a name="icm-replication-2.14.4"></a>
-## [icm-replication-2.14.4](https://github.com/intershop/helm-charts/compare/icm-replication-2.14.3...icm-replication-2.14.4)
+<a name="icm-replication-2.15.2"></a>
+## [icm-replication-2.15.2](https://github.com/intershop/helm-charts/compare/icm-replication-2.15.1...icm-replication-2.15.2)
 
-> 2025-07-17
+> 2025-08-14
 
-### Chore
+### Features
 
-* bump versions of icm:patch icm-as:patch icm-job-test:patch icm-replication:patch
-
-### Fix
-
-* **icm:** introduce new icm-job-test chart ([#1037](https://github.com/intershop/helm-charts/issues/1037))
+* **icm-replication:** added test file
 
