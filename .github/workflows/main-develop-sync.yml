@@ -36,7 +36,7 @@ jobs:
     - name: Create PR from feature/${{ matrix.branch }}/integrate-main to develop/${{ matrix.branch }}
       uses: peter-evans/create-pull-request@v6
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PR_CREATOR_TOKEN }}
         base: develop/${{ matrix.branch }}
         branch: feature/${{ matrix.branch }}/integrate-main
         title: "chore: integrate main to develop/${{ matrix.branch }}"
@@ -46,8 +46,8 @@ jobs:
       if: steps.cpr.outputs.pull-request-operation == 'created'
       uses: peter-evans/enable-pull-request-automerge@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PR_CREATOR_TOKEN }}
         pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
         merge-method: merge
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.PR_CREATOR_TOKEN }}
