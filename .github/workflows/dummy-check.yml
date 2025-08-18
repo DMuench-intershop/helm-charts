@@ -1,0 +1,13 @@
+name: Dummy Check
+
+on:
+  pull_request:
+    branches:
+      - 'develop/**'   # run this check for any PR targeting develop/*
+
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Always succeed
+        run: echo "✅ Dummy check passed"
