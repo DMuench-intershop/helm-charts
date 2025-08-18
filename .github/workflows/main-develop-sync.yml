@@ -27,11 +27,12 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         INTEGRATE="feature/${{ matrix.branch }}/integrate-main"
         git fetch --all
-        git checkout main
+        # Delete local branch if exists
         git branch -D $INTEGRATE || true
+        # Delete remote branch if exists
         git push origin --delete $INTEGRATE || true
-        git checkout -b $INTEGRATE
-        git push --force --set-upstream origin $INTEGRATE
+        git checkout develop/${{ matrix.branch }}
+        git merge origin/main --no-edit
     - name: Create PR from feature/${{ matrix.branch }}/integrate-main to develop/${{ matrix.branch }}
       uses: peter-evans/create-pull-request@v6
       with:
