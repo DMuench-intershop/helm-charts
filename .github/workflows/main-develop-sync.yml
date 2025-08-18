@@ -40,6 +40,5 @@ jobs:
         body: "Automated PR to sync main into develop/${{ matrix.branch }}"
         # labels: automerge
         draft: false
-        delete-branch: true
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
