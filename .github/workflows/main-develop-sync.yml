@@ -23,13 +23,12 @@ jobs:
         fetch-depth: 100
     - name: Prepare integration branch with merged changes
       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git fetch --all
-        git checkout develop/${{ matrix.branch }}
-        git merge origin/main --no-edit
-        git checkout -b feature/${{ matrix.branch }}/integrate-main
-        git push origin feature/${{ matrix.branch }}/integrate-main
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --all
+          git checkout main
+          git checkout -b feature/${{ matrix.branch }}/integrate-main
+          git push origin feature/${{ matrix.branch }}/integrate-main --force
     - name: Create PR from feature/${{ matrix.branch }}/integrate-main to develop/${{ matrix.branch }}
       uses: peter-evans/create-pull-request@v6
       with:
