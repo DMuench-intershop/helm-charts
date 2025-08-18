@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - 'develop/**'   # run this check for any PR targeting develop/*
+  workflow_dispatch:
+    
 
 jobs:
   dummy:
