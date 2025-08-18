@@ -41,7 +41,7 @@ jobs:
         branch: feature/${{ matrix.branch }}/integrate-main
         title: "chore: integrate main to develop/${{ matrix.branch }}"
         body: "Automated PR to sync main into develop/${{ matrix.branch }}"
-        # labels: automerge
+        labels: automerge
         draft: false
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
