@@ -21,19 +21,17 @@ jobs:
       with:
         # fetch the 100 most recent commits
         fetch-depth: 100
-    - name: Merge main into develop/${{ matrix.branch }}
-      shell: bash
-      run: |
-        # sets the user for the merge to be the GitHub actions bot
-        git config user.name 'github-actions[bot]'
-        git config user.email 'github-actions[bot]@users.noreply.github.com'
-
-        git fetch origin main
-        git fetch origin develop/${{ matrix.branch }}
-
-        git checkout -B develop/${{ matrix.branch }} origin/develop/${{ matrix.branch }}
-
-        git merge -m "chore: integrate main to develop/${{ matrix.branch }}" origin/main
-        git push origin develop/${{ matrix.branch }}
+    - name: Create PR from main to develop/${{ matrix.branch }}
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        source: main
+        destination: develop/${{ matrix.branch }}
+        title: "chore: integrate main to develop/${{ matrix.branch }}"
+        body: "Automated PR to sync main into develop/${{ matrix.branch }}"
+        branch: feature/${{ matrix.branch }}/integrate-main
+        labels: automerge
+        draft: false
+        delete-branch: true
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
