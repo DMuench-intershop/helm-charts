@@ -41,7 +41,13 @@ jobs:
         branch: feature/${{ matrix.branch }}/integrate-main
         title: "chore: integrate main to develop/${{ matrix.branch }}"
         body: "Automated PR to sync main into develop/${{ matrix.branch }}"
-        # labels: automerge
         draft: false
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Enable auto-merge
+      if: steps.cpr.outputs.pull-request-operation == 'created'
+      uses: peter-evans/enable-pull-request-automerge@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+        merge-method: merge
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
