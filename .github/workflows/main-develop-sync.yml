@@ -25,10 +25,11 @@ jobs:
       run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch --all
-          git checkout main
-          git checkout -b feature/${{ matrix.branch }}/integrate-main
-          git push origin feature/${{ matrix.branch }}/integrate-main --force
+          INTEGRATE="feature/${{ matrix.branch }}/integrate-main"
+          git branch --delete $INTEGRATE || true
+          git branch $INTEGRATE
+          git checkout $INTEGRATE
+          git push --force --set-upstream origin $INTEGRATE
     - name: Create PR from feature/${{ matrix.branch }}/integrate-main to develop/${{ matrix.branch }}
       uses: peter-evans/create-pull-request@v6
       with:
