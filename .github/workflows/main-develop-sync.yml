@@ -30,7 +30,7 @@ jobs:
         git merge origin/main --no-edit
         git checkout -b feature/${{ matrix.branch }}/integrate-main
         git push origin feature/${{ matrix.branch }}/integrate-main
-    - name: Create PR from main to develop/${{ matrix.branch }}
+    - name: Create PR from feature/${{ matrix.branch }}/integrate-main to develop/${{ matrix.branch }}
       uses: peter-evans/create-pull-request@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
         branch: feature/${{ matrix.branch }}/integrate-main
         title: "chore: integrate main to develop/${{ matrix.branch }}"
         body: "Automated PR to sync main into develop/${{ matrix.branch }}"
-        labels: automerge
+        # labels: automerge
         draft: false
         delete-branch: true
       env:
