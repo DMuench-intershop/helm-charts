@@ -45,6 +45,6 @@ jobs:
     - name: Enable auto-merge on PR
       run: |
         gh pr merge ${{ steps.create_pr.outputs.pull_request_number }} \
-        --auto --merge-method merge
+        --auto --squash
     env:
       GH_TOKEN: ${{ secrets.PR_CREATOR_TOKEN }}
